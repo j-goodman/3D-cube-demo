@@ -1,8 +1,20 @@
 body {
   background: #000;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+h3 {
+  color: #0f0;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 100;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-top: 10%;
+  width: 700px;
 }
 
 .container {
@@ -18,8 +30,8 @@ body {
   display: block;
   position: absolute;
   transform-style: preserve-3d;
-  transform: translateZ(-90px) rotateY(30deg) rotateZ(0deg) rotateX(0deg);
-  transition: transform 2s;
+  transform: translateZ(-90px) rotateY(630deg) rotateZ(90deg) rotateX(-90deg);
+  transition: transform 1s;
 }
 
 #cube.cube-effect {
