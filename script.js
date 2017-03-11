@@ -50,11 +50,11 @@ onload = function () {
 
 var writeCaption = function () {
   var text = document.getElementById('caption');
-  text.innerText = "Use the W, E, A, D, Z, and X keys to spin the cube.";
+  text.innerText = "Use the WWEDXZ and A keys to spin the cube.";
   setTimeout(function () {
     text.innerText = "HINT: The letters opposite each other across the 'S' key are always opposites!"
-  }, 8000)
+  }, 12000)
   setTimeout(function () {
     text.innerText = ""
-  }, 16000)
+  }, 20000)
 }
