@@ -12,6 +12,7 @@ onload = function () {
   cube.update = function () {
     this.style.transform = 'translateZ(-90px) rotateY(' + cube.spin.y + 'deg) rotateZ(' + cube.spin.z + 'deg) rotateX(' + cube.spin.x + 'deg)';
   }
+  cube.roll = roll;
   cube.update();
   onkeydown = function (event) {
     var validKeyCodes = [87, 69, 68, 88, 90, 65];
@@ -35,8 +36,49 @@ onload = function () {
       case 68:
         cube.spin.y -= increment;
         break;
+      case 32:
+        cube.roll();
+        break;
     }
     cube.update();
+  }
+}
+
+var roll = function () {
+  var face = Math.floor(Math.random() * 6) + 1
+  var origSpin = this.spin;
+  this.style.transition = 'transform 2s';
+  setTimeout(function () {
+    this.style.transition = 'transform 0.5s'
+  }.bind(this), 2000);
+  switch (face) {
+    case 1:
+      this.spin = {x: 540, y: -540, z: 540};
+      break;
+    case 2:
+      this.spin = {x: -540, y: -990, z: 900};
+      break;
+    case 3:
+      this.spin = {x: 990, y: 360, z: 360}
+      break;
+    case 4:
+      this.spin = {x: -810, y: 180, z: -540}
+      break;
+    case 5:
+      this.spin = {x: -900, y: 630, z: -540}
+      break;
+    case 6:
+      this.spin = {x: 0, y: 180, z: -180}
+      break;
+  }
+  if (
+    this.spin.x == origSpin.x &&
+    this.spin.y == origSpin.y &&
+    this.spin.z == origSpin.z
+  ) {
+    this.spin.x += 360;
+    this.spin.y -= 1080;
+    this.spin.z += 720;
   }
 }
 
@@ -52,8 +94,11 @@ var writeCaption = function () {
   var text = document.getElementById('caption');
   text.innerText = "Use the W E D X Z and A keys to spin the cube.";
   setTimeout(function () {
-    text.innerText = "HINT: The letters opposite each other across the 'S' key are always opposites!"
-  }, 12000)
+    text.innerText = "HINT: The keys opposite each other across the 'S' key are always opposites!"
+  }, 8000)
+  setTimeout(function () {
+    text.innerText = "Press the Spacebar to roll the dice";
+  }, 14000)
   setTimeout(function () {
     text.innerText = ""
   }, 20000)
